@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>VIAJES</h2>
+<p>Tabla de viajes</p>
+<table>
+    <tr>
+      <th>ID</th>
+      <th>Nombre del viaje</th> 
+      <th>Fecha de salida</th>
+      <th>Fecha de regreso</th>
+      <th>Precio</th>
+    </tr>
+        {% for item in data %}
+        <tr>
+            <th>{{item["id_viaje"]}}</th>
+            <th>{{item["nombre_viaje"]}}</th>
+            <th>{{item["fecha_salida"]}}</th>
+            <th>{{item["fecha_regreso"]}}</th>
+            <th>{{item["precio"]}}</th>
+        </tr>
+        {% endfor %}
+
+  </table>
+{% endblock %}
+

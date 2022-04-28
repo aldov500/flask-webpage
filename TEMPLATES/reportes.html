@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container mt-3">
+  <h2>Tabla filtrable </h2>
+  <p>Digita algun parametro en la caja de texto para filtrar resultados, destinos, fecha, precio</p>  
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br>
+  <table  id="datos" class="table table-bordered">
+    <thead >
+      <tr>
+        <th>ID</th>
+      <th>Nombre del viaje</th> 
+      <th>Fecha de salida</th>
+      <th>Fecha de regreso</th>
+      <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody >
+        {% for item in data %}
+        <tr>
+            <th>{{item["id_viaje"]}}</th>
+            <th>{{item["nombre_viaje"]}}</th>
+            <th>{{item["fecha_salida"]}}</th>
+            <th>{{item["fecha_regreso"]}}</th>
+            <th>{{item["precio"]}}</th>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#datos tbody tr ").filter(function()   {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+</body>
+</html>
+{% endblock %}
